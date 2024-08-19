@@ -9,6 +9,7 @@ using MRB.Application.UseCases.Recipes.GetById;
 using MRB.Application.UseCases.Recipes.Image;
 using MRB.Application.UseCases.Recipes.Register;
 using MRB.Application.UseCases.Recipes.Update;
+using MRB.Application.UseCases.Users.Delete;
 using MRB.Application.UseCases.Users.Login;
 using MRB.Application.UseCases.Users.Profile;
 using MRB.Application.UseCases.Users.Register;
@@ -60,6 +61,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetDashboardUseCase, GetDashboardUseCase>();
         services.AddScoped<IGenerateRecipeUseCase, GenerateRecipeUseCase>();
         services.AddScoped<IAddUpdateImageCoverUseCase, AddUpdateImageCoverUseCase>();
+        services.AddScoped<IRequestDeleteUserUseCase, RequestDeleteUserUseCase>();
     }
 
     private static void AddPasswordEncrypter(IServiceCollection services, IConfiguration configuration)
