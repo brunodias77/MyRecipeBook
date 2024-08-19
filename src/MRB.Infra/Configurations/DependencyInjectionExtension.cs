@@ -1,4 +1,5 @@
 using System.Reflection;
+using Azure.Messaging.ServiceBus;
 using Azure.Storage.Blobs;
 using FluentMigrator.Runner;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using MRB.Domain.Security;
 using MRB.Domain.Security.Token;
 using MRB.Domain.Services;
 using MRB.Domain.Services.OpenAI;
+using MRB.Domain.Services.ServiceBus;
 using MRB.Domain.Services.Storage;
 using MRB.Infra.Data;
 using MRB.Infra.Data.Repositories;
@@ -17,6 +19,7 @@ using MRB.Infra.Security.Tokens.Generator;
 using MRB.Infra.Security.Tokens.Validator;
 using MRB.Infra.Services.LoggedUsers;
 using MRB.Infra.Services.OpenAI;
+using MRB.Infra.Services.ServiceBus;
 using MRB.Infra.Services.Storage;
 using OpenAI_API;
 
@@ -100,4 +103,29 @@ public static class DependencyInjectionExtension
                 new AzureStorageService(new BlobServiceClient(connectionString)));
         }
     }
+
+    private static void AddQueue(IServiceCollection services, IConfiguration configuration)
+    {
+        var connectionString = configuration.GetValue<string>("Settings:ServiceBus:DeleteUserAccount")!;
+
+        if (string.IsNullOrWhiteSpace(connectionString))
+            return;
+
+        var client = new ServiceBusClient(connectionString, new ServiceBusClientOptions
+        {
+            TransportType = ServiceBusTransportType.AmqpWebSockets
+        });
+
+        var deleteQueue = new DeleteUserQueue(client.CreateSender("user"));
+
+        var deleteUserProcessor = new DeleteUserProcessor(client.CreateProcessor("user", new ServiceBusProcessorOptions
+        {
+            MaxConcurrentCalls = 1
+        }));
+
+        services.AddSingleton(deleteUserProcessor);
+
+        services.AddScoped<IDeleteUserQueue>(options => deleteQueue);
+    }
+
 }
