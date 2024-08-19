@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="EMAIL_ALREADY_REGISTERED" xml:space="preserve">
+        <value>Esse e-mail ja esta cadastrado</value>
+    </data>
+    <data name="AT_LEAST_ONE_INSTRUCTION" xml:space="preserve">
+        <value>A receita deve ter no mínimo um Instrucao.</value>
+    </data>
+    <data name="COOKING_TIME_NOT_SUPPORTED" xml:space="preserve">
+        <value>O tempo de preparo é invalido</value>
+    </data>
+    <data name="DIFFICULTY_LEVEL_NOT_SUPPORT" xml:space="preserve">
+        <value>Nível de dificuldade não suportado</value>
+    </data>
+    <data name="DISH_TYPE_NOT_SUPPORT" xml:space="preserve">
+        <value>Tipo de prato nao suportado.</value>
+    </data>
+    <data name="EMAIL_EMPTY" xml:space="preserve">
+        <value>O campo e-mail esta vazio</value>
+    </data>
+    <data name="EMAIL_INVALID" xml:space="preserve">
+        <value>O campo e-mail é invalido.</value>
+    </data>
+    <data name="EMAIL_OR_PASSWORD_INVALID" xml:space="preserve">
+        <value>E-mail ou senha invalida.</value>
+    </data>
+    <data name="INGREDIENT_EMPTY" xml:space="preserve">
+        <value>Ingrediente vazio.</value>
+    </data>
+    <data name="INSTRUCTION_EMPTY" xml:space="preserve">
+        <value>Instrução esta vazia.</value>
+    </data>
+    <data name="INSTRUCTION_EXCEEDS_LIMIT_CHARACTERS" xml:space="preserve">
+        <value>A instrucao excede o limite de caracteres</value>
+    </data>
+    <data name="NAME_EMPTY" xml:space="preserve">
+        <value>Nome esta vazio.</value>
+    </data>
+    <data name="NON_NEGATIVE_INSTRUCTION_STEP" xml:space="preserve">
+        <value>Passo de instrucao nao negativa.</value>
+    </data>
+    <data name="NO_TOKEN" xml:space="preserve">
+        <value>Token não encontrado.</value>
+    </data>
+    <data name="PASSWORD_EMPTY" xml:space="preserve">
+        <value>Senha esta vazia.</value>
+    </data>
+    <data name="PASSWORD_GREATER_THAN_OR_EQUAL_TO" xml:space="preserve">
+        <value>A senha deve conter no minimo 6 caracteres</value>
+    </data>
+    <data name="PASSWORD_INVALID" xml:space="preserve">
+        <value>Senha invalida.</value>
+    </data>
+    <data name="RECIPE_MINIMUM_ONE_INGREDIENT" xml:space="preserve">
+        <value>A receita deve ter no mínimo um ingrediente.</value>
+    </data>
+    <data name="RECIPE_TITLE_EMPTY" xml:space="preserve">
+        <value>O título da receita deve ser informado.</value>
+    </data>
+    <data name="TWO_OR_MORE_INSTRUCTIONS_SAME_ORDER" xml:space="preserve">
+        <value>Duas instrucoes com o numero do passo igual.</value>
+    </data>
+    <data name="UNKNOWN_ERROR" xml:space="preserve">
+        <value>Erro Desconhecido !</value>
+    </data>
+    <data name="USER_WITHOUT_PERMISSION_ACCESS_RESOURCE" xml:space="preserve">
+        <value>Usuário não tem permissão para acessar esse recurso.</value>
+    </data>
+    <data name="RECIPE_NOT_FOUND" xml:space="preserve">
+        <value>A receita não foi encontrada.</value>
+    </data>
+    <data name="INVALID_NUMBER_INGREDIENTS" xml:space="preserve">
+        <value>Número inválido de ingredientes. A lista deve conter entre 1 a 5 ingredientes.</value>
+    </data>
+    <data name="DUPLICATED_INGREDIENTS_IN_LIST" xml:space="preserve">
+        <value>Ingredientes duplicatos </value>
+    </data>
+    <data name="INGREDIENT_NOT_FOLLOWING_PATTERN" xml:space="preserve">
+        <value>O ingrediente não segue o padrão.</value>
+    </data>
+    <data name="ONLY_IMAGES_ACCEPTED" xml:space="preserve">
+        <value>Somente imagens (PNG, JPG, JPEG) são aceitas.</value>
+    </data>
+</root>

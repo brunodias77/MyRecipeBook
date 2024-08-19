@@ -1,0 +1,35 @@
+# Arquivos de dependências
+*.nuget
+
+# Arquivos de log
+*.log
+
+# Diretórios de publicação
+publish/
+
+# Arquivos de configuração do usuário
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Arquivos do Visual Studio
+.vscode/
+.vs/
+
+# Arquivos de backup
+*.bak
+
+# Arquivos de ambiente
+.env
+
+# Arquivos de build
+bin/
+obj/
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de configuração de desenvolvimento
+appsettings.Development.json

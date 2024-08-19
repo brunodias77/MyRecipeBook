@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="13.0.1" />
+      <PackageReference Include="Bogus" Version="35.5.1" />
+      <PackageReference Include="Moq" Version="4.20.70" />
+      <PackageReference Include="Sqids" Version="3.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\MRB.Application\MRB.Application.csproj" />
+      <ProjectReference Include="..\..\src\MRB.Communication\MRB.Communication.csproj" />
+      <ProjectReference Include="..\..\src\MRB.Domain\MRB.Domain.csproj" />
+      <ProjectReference Include="..\..\src\MRB.Infra\MRB.Infra.csproj" />
+    </ItemGroup>
+
+</Project>
