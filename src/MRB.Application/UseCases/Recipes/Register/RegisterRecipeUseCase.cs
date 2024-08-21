@@ -55,6 +55,7 @@ public class RegisterRecipeUseCase : IRegisterRecipeUseCase
             recipe.ImageIdentifier = $"{Guid.NewGuid()}{extension}";
             await _blobStorageService.Upload(loggedUser, fileStream, recipe.ImageIdentifier);
         }
+
         await _recipeRepository.Add(recipe);
         return new ResponseRegisteredRecipeJson
         {

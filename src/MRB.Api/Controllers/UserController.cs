@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MRB.Api.Attributes;
+using MRB.Application.UseCases.Users.Delete;
 using MRB.Application.UseCases.Users.Login;
 using MRB.Application.UseCases.Users.Profile;
 using MRB.Application.UseCases.Users.Register;
@@ -70,6 +71,16 @@ public class UserController : ControllerBase
         [FromBody] RequestUpdateUserJson request)
     {
         await useCase.Execute(request);
+
+        return NoContent();
+    }
+
+    [HttpDelete]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [AuthenticatedUser]
+    public async Task<IActionResult> Delete([FromServices] IRequestDeleteUserUseCase useCase)
+    {
+        await useCase.Execute();
 
         return NoContent();
     }
