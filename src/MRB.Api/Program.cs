@@ -1,4 +1,5 @@
 using Microsoft.OpenApi.Models;
+using MRB.Api.BackgroundServices;
 using MRB.Api.Converters;
 using MRB.Api.Filters;
 using MRB.Api.Middlewares;
@@ -69,6 +70,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddHostedService<DeleteUserService>();
 
 var app = builder.Build();
 

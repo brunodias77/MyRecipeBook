@@ -37,6 +37,7 @@ public static class DependencyInjectionExtension
         AddOpenAI(services, configuration);
         AddFluenteMigrator(services, configuration);
         AddAzureStorage(services, configuration);
+        AddQueue(services, configuration);
     }
 
     private static void AddDbContext(IServiceCollection services, IConfigurationManager configuration)
@@ -127,5 +128,4 @@ public static class DependencyInjectionExtension
 
         services.AddScoped<IDeleteUserQueue>(options => deleteQueue);
     }
-
 }
