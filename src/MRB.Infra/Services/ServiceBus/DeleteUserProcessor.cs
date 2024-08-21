@@ -13,5 +13,6 @@ namespace MRB.Infra.Services.ServiceBus
         {
             this._processor = processo;
         }
+        public ServiceBusProcessor GetProcessor() => _processor;
     }
 }
