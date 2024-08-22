@@ -62,8 +62,9 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetDashboardUseCase, GetDashboardUseCase>();
         services.AddScoped<IGenerateRecipeUseCase, GenerateRecipeUseCase>();
         services.AddScoped<IAddUpdateImageCoverUseCase, AddUpdateImageCoverUseCase>();
-        services.AddScoped<IRequestDeleteUserUseCase, RequestDeleteUserUseCase>();
         services.AddScoped<IDeleteUserAccountUseCase, DeleteUserAccountUseCase>();
+        services.AddScoped<IRequestDeleteUserUseCase, RequestDeleteUserUseCase>();
+
 
     }
 

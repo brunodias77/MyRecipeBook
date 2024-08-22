@@ -84,4 +84,11 @@ public class UserController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpGet]
+    [Route("google")]
+    public async Task<IActionResult> Get()
+    {
+        return Ok();
+    }
 }

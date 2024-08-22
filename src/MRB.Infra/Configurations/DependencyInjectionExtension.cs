@@ -29,6 +29,7 @@ public static class DependencyInjectionExtension
 {
     public static void AddInfrastructure(this IServiceCollection services, IConfigurationManager configuration)
     {
+        AddQueue(services, configuration);
         AddPasswordEncrypter(services, configuration);
         AddDbContext(services, configuration);
         AddLoggedUser(services);
@@ -37,7 +38,6 @@ public static class DependencyInjectionExtension
         AddOpenAI(services, configuration);
         AddFluenteMigrator(services, configuration);
         AddAzureStorage(services, configuration);
-        AddQueue(services, configuration);
     }
 
     private static void AddDbContext(IServiceCollection services, IConfigurationManager configuration)

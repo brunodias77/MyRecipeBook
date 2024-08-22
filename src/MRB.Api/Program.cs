@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.OpenApi.Models;
 using MRB.Api.BackgroundServices;
 using MRB.Api.Converters;
@@ -106,8 +107,18 @@ void MigrateDatabase()
 
 void AddGoogleAuthentication()
 {
-    var clientId = builder.Configuration.GetValue<string>("Settings:Google:ClientId");
-    var clientSecret = builder.Configuration.GetValue<string>("Settings:Google:ClientSecret");
+    var clientId = builder.Configuration.GetValue<string>("Settings:Google:ClientId")!;
+    var clientSecret = builder.Configuration.GetValue<string>("Settings:Google:ClientSecret")!;
+
+    builder.Services.AddAuthentication(config =>
+        {
+            config.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        }).AddCookie()
+        .AddGoogle(googleOptions =>
+        {
+            googleOptions.ClientId = clientId;
+            googleOptions.ClientSecret = clientSecret;
+        });
 }
 
 public partial class Program
