@@ -71,6 +71,7 @@ builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddHostedService<DeleteUserService>();
+AddGoogleAuthentication();
 
 var app = builder.Build();
 
@@ -101,6 +102,12 @@ void MigrateDatabase()
 
     var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
     DataBaseMigration.Migrate(builder.Configuration.ConnectionString(), serviceScope.ServiceProvider);
+}
+
+void AddGoogleAuthentication()
+{
+    var clientId = builder.Configuration.GetValue<string>("Settings:Google:ClientId");
+    var clientSecret = builder.Configuration.GetValue<string>("Settings:Google:ClientSecret");
 }
 
 public partial class Program
