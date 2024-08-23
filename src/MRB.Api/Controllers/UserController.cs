@@ -1,7 +1,10 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Mvc;
 using MRB.Api.Attributes;
 using MRB.Application.UseCases.Users.Delete;
 using MRB.Application.UseCases.Users.Login;
+using MRB.Application.UseCases.Users.Login.External;
 using MRB.Application.UseCases.Users.Profile;
 using MRB.Application.UseCases.Users.Register;
 using MRB.Application.UseCases.Users.Update;
@@ -14,9 +17,7 @@ using MRB.Domain.Security;
 
 namespace MRB.Api.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class UserController : ControllerBase
+public class UserController : BaseController
 {
     public UserController(IUserRepository userRepository, IPasswordEncripter passwordEncripter)
     {
@@ -87,8 +88,21 @@ public class UserController : ControllerBase
 
     [HttpGet]
     [Route("google")]
-    public async Task<IActionResult> Get()
+    public async Task<IActionResult> LoginGoogle(String returnUrl, [FromServices] IExternalLoginUseCase useCase)
     {
-        return Ok();
+
+        var authenticate = await Request.HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);
+        if (IsNotAutheticated(authenticate))
+        {
+            return Challenge(GoogleDefaults.AuthenticationScheme);
+        }
+        else
+        {
+            var claims = authenticate.Principal!.Identities.First().Claims;
+            var name = claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Name).Value;
+            var email = claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Email).Value;
+            var token = await useCase.Execute(name, email);
+            return Redirect($"{returnUrl}/{token}");
+        }
     }
 }

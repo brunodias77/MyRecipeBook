@@ -12,6 +12,8 @@ using MRB.Application.UseCases.Recipes.Update;
 using MRB.Application.UseCases.Users.Delete;
 using MRB.Application.UseCases.Users.Delete.Delete;
 using MRB.Application.UseCases.Users.Login;
+using MRB.Application.UseCases.Users.Login.External;
+using MRB.Application.UseCases.Users.Login.Google;
 using MRB.Application.UseCases.Users.Profile;
 using MRB.Application.UseCases.Users.Register;
 using MRB.Application.UseCases.Users.Update;
@@ -64,7 +66,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IAddUpdateImageCoverUseCase, AddUpdateImageCoverUseCase>();
         services.AddScoped<IDeleteUserAccountUseCase, DeleteUserAccountUseCase>();
         services.AddScoped<IRequestDeleteUserUseCase, RequestDeleteUserUseCase>();
-
+        services.AddScoped<IExternalLoginUseCase, LoginGoogleUseCase>();
 
     }
 
