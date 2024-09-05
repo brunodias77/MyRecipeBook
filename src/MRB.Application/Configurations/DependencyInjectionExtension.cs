@@ -17,6 +17,7 @@ using MRB.Application.UseCases.Users.Login.Google;
 using MRB.Application.UseCases.Users.Profile;
 using MRB.Application.UseCases.Users.Register;
 using MRB.Application.UseCases.Users.Update;
+using MRB.Domain.Repositories;
 using MyRecipeBook.Application.UseCases.Recipe.Image;
 using Sqids;
 
@@ -67,7 +68,6 @@ public static class DependencyInjectionExtension
         services.AddScoped<IDeleteUserAccountUseCase, DeleteUserAccountUseCase>();
         services.AddScoped<IRequestDeleteUserUseCase, RequestDeleteUserUseCase>();
         services.AddScoped<IExternalLoginUseCase, LoginGoogleUseCase>();
-
     }
 
     private static void AddPasswordEncrypter(IServiceCollection services, IConfiguration configuration)

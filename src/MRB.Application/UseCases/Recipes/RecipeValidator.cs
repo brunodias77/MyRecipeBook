@@ -37,7 +37,7 @@ public class RecipeValidator : AbstractValidator<RequestRegisterRecipeJson>
         RuleForEach(recipe => recipe.Instructions).ChildRules(instructionRule =>
         {
             // Para cada instrução, verifica se o campo Step é maior que 0. Caso contrário, lança uma mensagem de erro específica.
-            instructionRule.RuleFor(instruction => instruction.Step).GreaterThan(0)
+            instructionRule.RuleFor(instruction => instruction.Step).GreaterThan(-1)
                 .WithMessage(ResourceMessagesException.NON_NEGATIVE_INSTRUCTION_STEP);
 
             // Para cada instrução, verifica se o campo Text não está vazio e tem no máximo 2000 caracteres. Caso contrário, lança uma mensagem de erro específica.

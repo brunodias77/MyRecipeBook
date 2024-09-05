@@ -16,6 +16,7 @@ using MRB.Domain.Services.Storage;
 using MRB.Infra.Data;
 using MRB.Infra.Data.Repositories;
 using MRB.Infra.Security.Tokens.Generator;
+using MRB.Infra.Security.Tokens.Refresh;
 using MRB.Infra.Security.Tokens.Validator;
 using MRB.Infra.Services.LoggedUsers;
 using MRB.Infra.Services.OpenAI;
@@ -56,6 +57,8 @@ public static class DependencyInjectionExtension
 
         services.AddScoped<IAccessTokenGenerator>(option => new JwtTokenGenerator(expirationTimeMinutes, signingKey!));
         services.AddScoped<IAccessTokenValidator>(option => new JwtTokenValidator(signingKey!));
+        services.AddScoped<IRefreshTokenGenerator, RefreshTokenGenerator>();
+
     }
 
     private static void AddRepositories(IServiceCollection services)
@@ -63,6 +66,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IRecipeRepository, RecipeRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<ITokenRepository, TokenRepository>();
     }
 
     private static void AddFluenteMigrator(IServiceCollection services, IConfigurationManager configuration)

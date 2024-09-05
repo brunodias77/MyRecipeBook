@@ -7,8 +7,10 @@ using MRB.Application.UseCases.Users.Login;
 using MRB.Application.UseCases.Users.Login.External;
 using MRB.Application.UseCases.Users.Profile;
 using MRB.Application.UseCases.Users.Register;
+using MRB.Application.UseCases.Users.Token.RefreshToken;
 using MRB.Application.UseCases.Users.Update;
 using MRB.Communication.Requests.Users;
+using MRB.Communication.Requests.Users.Token;
 using MRB.Communication.Responses;
 using MRB.Communication.Responses.Users;
 using MRB.Domain.Entities;
@@ -104,5 +106,15 @@ public class UserController : BaseController
             var token = await useCase.Execute(name, email);
             return Redirect($"{returnUrl}/{token}");
         }
+    }
+
+    [HttpPost("refresh-token")]
+    [ProducesResponseType(typeof(ResponseTokenJson), StatusCodes.Status200OK)]
+    public async Task<IActionResult> RefreshToken(
+        [FromServices] IUseRefreshTokenUseCase useCase,
+        [FromBody] RequestNewTokenJson request)
+    {
+        var response = await useCase.Execute(request);
+        return Ok(response);
     }
 }

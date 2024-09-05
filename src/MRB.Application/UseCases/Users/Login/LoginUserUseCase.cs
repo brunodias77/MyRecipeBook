@@ -25,8 +25,12 @@ public class LoginUserUseCase : ILoginUserUseCase
     public async Task<ResponseRegisterUserJson> Execute(RequestLoginUserJson request)
     {
         var user = await _userRepository.GetUserByEmail(request.Email);
-
         var passwordMatch = _passwordEncripter.Verify(request.Password, user.Password);
+
+        if (user is null || !passwordMatch)
+        {
+            throw new InvalidLoginException();
+        }
 
         return new ResponseRegisterUserJson()
         {

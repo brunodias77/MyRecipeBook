@@ -71,11 +71,13 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddHostedService<DeleteUserService>();
-AddGoogleAuthentication();
+if (!builder.Configuration.IsUnitTestEnvironment())
+{
+    builder.Services.AddHostedService<DeleteUserService>();
+    AddGoogleAuthentication();
+}
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
