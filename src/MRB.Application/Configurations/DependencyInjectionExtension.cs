@@ -38,7 +38,7 @@ public static class DependencyInjectionExtension
         var sqids = new SqidsEncoder<long>(new()
         {
             MinLength = 10,
-            Alphabet = configuration.GetValue<string>("Settings:IdCryptographyAlphabet")!
+            Alphabet = configuration.GetValue<string>("achIugtW19s7vA4ldomHjULNFYbery0EpTMxkBiQ6qJ2SKXZG35Cz8RDfnPOVw")!
         });
 
         // Se for usar o o sqids com autoMapper
