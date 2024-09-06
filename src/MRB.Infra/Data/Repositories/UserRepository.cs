@@ -54,4 +54,17 @@ public class UserRepository : IUserRepository
     }
 
     public void Update(User user) => _context.Users.Update(user);
+
+    public async Task DeleteAccount(Guid userId)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(user => user.Id == userId);
+        if (user is null)
+        {
+            return;
+        }
+
+        var recipes = _context.Recipes.Where(recipe => recipe.UserId == user.Id);
+        _context.Recipes.RemoveRange(recipes);
+        _context.Users.Remove(user);
+    }
 }

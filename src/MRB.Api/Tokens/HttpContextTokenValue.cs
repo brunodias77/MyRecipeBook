@@ -1,14 +1,21 @@
 using MRB.Domain.Security.Token;
 
-namespace MRB.Api.Tokens;
-
-public class HttpContextTokenValue(IHttpContextAccessor httpContextAccessor) : ITokenProvider
+namespace MRB.Api.Tokens
 {
-    private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
-
-    public string Value()
+    // Implementação de ITokenProvider que obtém o token do contexto HTTP
+    public class HttpContextTokenValue(IHttpContextAccessor httpContextAccessor) : ITokenProvider
     {
-        var authentication = _httpContextAccessor.HttpContext!.Request.Headers.Authorization.ToString();
-        return authentication["Bearer ".Length..].ToString();
+        // Acesso ao contexto HTTP para ler os headers da solicitação
+        private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
+
+        // Obtém o valor do token a partir do header Authorization da solicitação HTTP
+        public string Value()
+        {
+            // Obtém o valor do header Authorization
+            var authentication = _httpContextAccessor.HttpContext!.Request.Headers.Authorization.ToString();
+
+            // Remove o prefixo "Bearer " e retorna o token
+            return authentication["Bearer ".Length..].ToString();
+        }
     }
 }

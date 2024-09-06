@@ -10,10 +10,15 @@ using MRB.Application.UseCases.Recipes.Image;
 using MRB.Application.UseCases.Recipes.Register;
 using MRB.Application.UseCases.Recipes.Update;
 using MRB.Application.UseCases.Users.Delete;
+using MRB.Application.UseCases.Users.Delete.Delete;
 using MRB.Application.UseCases.Users.Login;
+using MRB.Application.UseCases.Users.Login.External;
+using MRB.Application.UseCases.Users.Login.Google;
 using MRB.Application.UseCases.Users.Profile;
 using MRB.Application.UseCases.Users.Register;
+using MRB.Application.UseCases.Users.Token.RefreshToken;
 using MRB.Application.UseCases.Users.Update;
+using MRB.Domain.Repositories;
 using MyRecipeBook.Application.UseCases.Recipe.Image;
 using Sqids;
 
@@ -33,7 +38,7 @@ public static class DependencyInjectionExtension
         var sqids = new SqidsEncoder<long>(new()
         {
             MinLength = 10,
-            Alphabet = configuration.GetValue<string>("Settings:IdCryptographyAlphabet")!
+            Alphabet = configuration.GetValue<string>("achIugtW19s7vA4ldomHjULNFYbery0EpTMxkBiQ6qJ2SKXZG35Cz8RDfnPOVw")!
         });
 
         // Se for usar o o sqids com autoMapper
@@ -61,7 +66,10 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetDashboardUseCase, GetDashboardUseCase>();
         services.AddScoped<IGenerateRecipeUseCase, GenerateRecipeUseCase>();
         services.AddScoped<IAddUpdateImageCoverUseCase, AddUpdateImageCoverUseCase>();
+        services.AddScoped<IDeleteUserAccountUseCase, DeleteUserAccountUseCase>();
         services.AddScoped<IRequestDeleteUserUseCase, RequestDeleteUserUseCase>();
+        services.AddScoped<IExternalLoginUseCase, LoginGoogleUseCase>();
+        services.AddScoped<IUseRefreshTokenUseCase, UseRefreshTokenUseCase>();
     }
 
     private static void AddPasswordEncrypter(IServiceCollection services, IConfiguration configuration)

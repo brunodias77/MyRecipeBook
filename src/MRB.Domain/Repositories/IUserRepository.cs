@@ -16,7 +16,8 @@ public interface IUserRepository
     Task<User> GetById(Guid id);
 
     Task<User?> GetUserByEmail(string email);
-    
+
     public void Update(User user);
 
+    Task DeleteAccount(Guid userId);
 }
